@@ -1,0 +1,32 @@
+{
+  "name": "parallel-graph-processing",
+  "version": "1.0.0",
+  "description": "graph processing in parallel/shared memory",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/amit-upadhyay-it/parallel-graph-processing.git"
+  },
+  "keywords": [
+    "graph",
+    "processing",
+    "parallel",
+    "graph",
+    "processing",
+    "shared",
+    "memory"
+  ],
+  "author": "amit upadhyay",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/amit-upadhyay-it/parallel-graph-processing/issues"
+  },
+  "homepage": "https://github.com/amit-upadhyay-it/parallel-graph-processing#readme",
+  "dependencies": {
+    "ejs": "^2.5.7",
+    "express": "^4.16.2"
+  }
+}
