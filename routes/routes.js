@@ -1,5 +1,7 @@
+var os = require('os')
+
 function mainpage(req, res){
-    res.render('../views/home.ejs', {arg1:"body arg1",
+    res.render('../views/home.ejs', {cores: os.cpus().length,
                             arg2:"body arg2"});
 }
 
