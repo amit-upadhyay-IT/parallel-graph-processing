@@ -27,6 +27,7 @@
   "homepage": "https://github.com/amit-upadhyay-it/parallel-graph-processing#readme",
   "dependencies": {
     "ejs": "^2.5.7",
-    "express": "^4.16.2"
+    "express": "^4.16.2",
+    "socket.io": "^2.0.4"
   }
 }

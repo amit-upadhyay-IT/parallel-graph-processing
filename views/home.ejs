@@ -80,7 +80,7 @@
                                                 Code
                                             </th>
                                             <th>
-                                                Frameword Used
+                                                Compile and Run
                                             </th>
                                             <th class="text-right">
                                                 Running Time
@@ -97,7 +97,7 @@
 						</a>
                                                 </td>
                                                 <td>
-                                                    --
+							<button class="btn btn-primary" onclick="compileAndRun(11)">Compile & Run</button>
                                                 </td>
                                                 <td class="text-right">
                                                     --
@@ -113,7 +113,7 @@
 						</a>
                                                 </td>
                                                 <td>
-                                                    --
+                                                    <button class="btn btn-primary" onclick="compileAndRun(12)">Compile & Run</button>
                                                 </td>
                                                 <td class="text-right">
                                                     --
@@ -129,7 +129,7 @@
 						</a>
                                                 </td>
                                                 <td>
-                                                    --
+                                                    <button class="btn btn-primary" onclick="compileAndRun(13)">Compile & Run</button>
                                                 </td>
                                                 <td class="text-right">
                                                     --
@@ -221,7 +221,7 @@
                                                 Code
                                             </th>
                                             <th>
-                                                Frameword Used
+                                                Compile and Run
                                             </th>
                                             <th class="text-right">
                                                 Running Time
@@ -238,10 +238,10 @@
 						</a>
                                                 </td>
                                                 <td>
-                                                    --
+                                                    <button class="btn btn-primary" onclick="compileAndRun(21)">Compile & Run</button>
                                                 </td>
                                                 <td class="text-right">
-                                                    <button type="button" onclick="myFunction()">Click Me!</button>
+                                                    --
                                                 </td>
                                             </tr>
                                             <tr>
@@ -254,7 +254,7 @@
 						</a>
                                                 </td>
                                                 <td>
-                                                    --
+                                                    <button class="btn btn-primary" onclick="compileAndRun(22)">Compile & Run</button>
                                                 </td>
                                                 <td class="text-right">
                                                     --
@@ -270,7 +270,7 @@
 						</a>
                                                 </td>
                                                 <td>
-                                                    --
+                                                    <button class="btn btn-primary" onclick="compileAndRun(23)">Compile & Run</button>
                                                 </td>
                                                 <td class="text-right">
                                                     --
@@ -354,6 +354,16 @@
             
         </div>
     </div>
+
+<script src="/socket.io/socket.io.js"></script>
+<script>
+  var socket = io();
+
+	function compileAndRun(arg_val) {
+		socket.emit('compileandrun', arg_val);
+	}
+</script>
+
 </body>
 <!--   Core JS Files   -->
 <script src="./assets/js/core/jquery.min.js"></script>

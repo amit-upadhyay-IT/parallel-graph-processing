@@ -1,5 +1,7 @@
 var exp = require("express");
 var app = exp();
+var http = require('http').Server(app);
+var io=require('socket.io')(http);
 
 app.set('view engine', 'ejs');
 
@@ -17,6 +19,33 @@ app.get('/', routes.mainpage);
 
 var port = process.env.PORT || 3000;
 
-app.listen(port, function(){
+// communication work
+io.on('connection', function(socket){
+  console.log('A new Connection Established!');
+
+    socket.on('compileandrun', function(msg){
+        compileAndRun(msg)
+      });
+
+    socket.on('disconnect', function(){
+        console.log('Connection Broken!');
+      });
+});
+
+http.listen(port, function(){
     console.log("Server is listening on port "+port);
 });
+
+function compileAndRun(program_code)
+{
+    var compile_command = '';
+    var run_command = '';
+    if (program_code == 11)  // BFS
+    {
+        compile_command = 'g++ '+'./frame_l/apps/'+'BFS.C -o BFS';
+        run_command = './frame_l/apps/'+'BFS'
+    }
+
+    console.log(compile_command);
+    console.log(run_command);
+}
