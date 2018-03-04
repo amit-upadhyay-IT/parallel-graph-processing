@@ -371,7 +371,7 @@
 	}
 
 	socket.on('timeoutput', function(time, id_name){
-		  document.getElementById(id_name).innerHTML = time+' ms';
+		  document.getElementById(id_name).innerHTML = JSON.stringify(time)+' ms';
 		});
 </script>
 
