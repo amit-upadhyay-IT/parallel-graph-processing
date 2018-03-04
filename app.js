@@ -57,6 +57,7 @@ function compileAndRun(program_code, socket)
 
     if (compile_command === '' || run_command === '')
     {
+        socket.emit('timeoutput', 'no such program written yet', program_code);
         console.log('You don\'t yet have the program for ' + program_code);
     }
     else
@@ -66,7 +67,10 @@ function compileAndRun(program_code, socket)
             function (err, data, stderr)
             {
                 if (err)
+                {
+                    socket.emit('timeoutput', err, program_code);
                     console.log('something went wrong: ' + err);
+                }
                 // if no error found then running the program
                 else
                 {
@@ -74,10 +78,18 @@ function compileAndRun(program_code, socket)
                     cmd.get(run_command,
                         function (err, data, stderr)
                         {
-                            var time = data.substring(data.length-9, data.length);
-                            console.log('Running time: ' + time);
-                            // emit this time, don't broadcase because I don't want to display to everyone
-                            socket.emit('timeoutput', time, program_code);
+                            if (err)
+                            {
+                                socket.emit('timeoutput', err, program_code);
+                                console.log('something went wrong: '+err);
+                            }
+                            else
+                            {
+                                var time = data.substring(data.length-9, data.length);
+                                console.log('Running time: ' + time);
+                                // emit this time, don't broadcase because I don't want to display to everyone
+                                socket.emit('timeoutput', time, program_code);
+                            }
                         }
                     );
                 }
