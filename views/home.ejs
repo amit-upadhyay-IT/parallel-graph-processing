@@ -97,9 +97,9 @@
 						</a>
                                                 </td>
                                                 <td>
-							<button class="btn btn-primary" onclick="compileAndRun(11)">Compile & Run</button>
+							<button class="btn btn-primary" onclick="compileAndRun('BFS1')">Compile & Run</button>
                                                 </td>
-                                                <td class="text-right">
+                                                <td id="BFS1" class="text-right">
                                                     --
                                                 </td>
                                             </tr>
@@ -362,6 +362,10 @@
 	function compileAndRun(arg_val) {
 		socket.emit('compileandrun', arg_val);
 	}
+
+	socket.on('timeoutput', function(time, id_name){
+		  document.getElementById(id_name).innerHTML = time+' ms';
+		});
 </script>
 
 </body>

@@ -3,6 +3,8 @@ var app = exp();
 var http = require('http').Server(app);
 var io=require('socket.io')(http);
 
+var cmd = require('node-cmd');
+
 app.set('view engine', 'ejs');
 
 var routes = require('./routes/routes.js');
@@ -24,7 +26,7 @@ io.on('connection', function(socket){
   console.log('A new Connection Established!');
 
     socket.on('compileandrun', function(msg){
-        compileAndRun(msg)
+        compileAndRun(msg, socket)
       });
 
     socket.on('disconnect', function(){
@@ -36,16 +38,41 @@ http.listen(port, function(){
     console.log("Server is listening on port "+port);
 });
 
-function compileAndRun(program_code)
+function compileAndRun(program_code, socket)
 {
     var compile_command = '';
     var run_command = '';
-    if (program_code == 11)  // BFS
+    if (program_code === 'BFS1')  // BFS
     {
         compile_command = 'g++ '+'./frame_l/apps/'+'BFS.C -o BFS';
-        run_command = './frame_l/apps/'+'BFS'
+        run_command = './frame_l/apps/'+'BFS -s -start 1 ./frame_l/inputs/rMatGraph_J_5_100';
     }
 
     console.log(compile_command);
     console.log(run_command);
+
+    // compiling the program first
+    cmd.get(compile_command,
+        function (err, data, stderr)
+        {
+            if (err)
+            {
+                console.log('something went wrong!');
+            }
+            // if no error found then running the program
+            else
+            {
+                console.log(data);
+                cmd.get(run_command,
+                    function (err, data, stderr)
+                    {
+                        var time = data.substring(data.length-9, data.length);
+                        console.log('Running time: ' + time);
+                        // emit this time, don't broadcase because I don't want to display to everyone
+                        socket.emit('timeoutput', time, program_code);
+                    }
+                );
+            }
+        });
+
 }
