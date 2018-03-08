@@ -41,33 +41,30 @@ http.listen(port, function(){
     console.log("Server is listening on port "+port);
 });
 
+// program_code is the program name, so I compile the program with that name itself
 function compileAndRun(program_code, socket)
 {
-    var compile_command = '';
-    var run_command = '';
-    if (program_code === 'BFS1')  // BFS
+    // check if the program is written for the passed program_code, then only do further steps
+    if (program_code === 'BFS' || program_code === 'KCore')
     {
-        compile_command = 'g++ '+'./frame_l/apps/'+'BFS.C -o BFS';
-        // compilation object code is gonna be in the current directory
-        run_command = './BFS -s -start 1 ./frame_l/inputs/rMatGraph_J_5_100';
-    }
+        // for building compile command and run command
+        var compile_command = '';
+        var run_command = '';
 
-    console.log(compile_command);
-    console.log(run_command);
+        compile_command = 'g++ '+'./frame_l/apps/'+program_code+'.C -o '+program_code;
+        // compiled object code is gonna be in the current directory
+        run_command = './' + program_code + ' -s -start 1 ./frame_l/inputs/rMatGraph_J_5_100';
 
-    if (compile_command === '' || run_command === '')
-    {
-        socket.emit('timeoutput', 'no such program written yet', program_code);
-        console.log('You don\'t yet have the program for ' + program_code);
-    }
-    else
-    {
+        console.log(compile_command);
+        console.log(run_command);
+
         // compiling the program first
         cmd.get(compile_command,
             function (err, data, stderr)
             {
                 if (err)
                 {
+                    // writing err to the timeout channel, passing the program_code code coz, program_code is the id for the view to display
                     socket.emit('timeoutput', err, program_code);
                     console.log('something went wrong: ' + err);
                 }
@@ -94,5 +91,11 @@ function compileAndRun(program_code, socket)
                     );
                 }
             });
+    }
+    else
+    {
+        socket.emit('timeoutput', 'no such program written yet', program_code);
+        console.log('You don\'t yet have the program for ' + program_code);
+
     }
 }

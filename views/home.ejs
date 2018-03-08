@@ -104,15 +104,15 @@
 						</a>
                                                 </td>
                                                 <td>
-							<button class="btn btn-primary" onclick="compileAndRun('BFS1')">Compile & Run</button>
+							<button class="btn btn-primary" onclick="compileAndRun('BFS')">Compile & Run</button>
                                                 </td>
-                                                <td id="BFS1" class="text-right">
+                                                <td id="BFS" class="text-right">
                                                     --
                                                 </td>
                                             </tr>
                                             <tr>
                                                 <td>
-                                                    Bellman Ford
+                                                    KCore
                                                 </td>
                                                 <td>
                                                     <a href="http://binomial.me">
@@ -120,9 +120,9 @@
 						</a>
                                                 </td>
                                                 <td>
-                                                    <button class="btn btn-primary" onclick="compileAndRun('BelmanFord1')">Compile & Run</button>
+                                                    <button class="btn btn-primary" onclick="compileAndRun('KCore')">Compile & Run</button>
                                                 </td>
-                                                <td id="BelmanFord1" class="text-right">
+                                                <td id="KCore" class="text-right">
                                                     --
                                                 </td>
                                             </tr>
@@ -371,7 +371,7 @@
 	}
 
 	socket.on('timeoutput', function(time, id_name){
-		  document.getElementById(id_name).innerHTML = JSON.stringify(time)+' ms';
+		  document.getElementById(id_name).innerHTML = time+' ms';
 		});
 </script>
 
