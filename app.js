@@ -53,7 +53,7 @@ function compileAndRun(program_code, socket)
 
         compile_command = 'g++ '+'./frame_l/apps/'+program_code+'.C -o '+program_code;
         // compiled object code is gonna be in the current directory
-        run_command = './' + program_code + ' -s -start 1 ./frame_l/inputs/rMatGraph_J_5_100';
+        run_command = './' + program_code + ' -s -start 1 ./frame_l/inputs/newfbdata';
 
         console.log(compile_command);
         console.log(run_command);

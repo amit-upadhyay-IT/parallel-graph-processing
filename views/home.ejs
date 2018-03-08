@@ -89,6 +89,9 @@
                                             <th>
                                                 Compile and Run
                                             </th>
+                                            <th>
+                                                Input dataset
+                                            </th>
                                             <th class="text-right">
                                                 Running Time
                                             </th>
@@ -106,6 +109,12 @@
                                                 <td>
 							<button class="btn btn-primary" onclick="compileAndRun('BFS')">Compile & Run</button>
                                                 </td>
+                                                <td id="dataset_name">
+		                                         <div class="form-group">
+				                                
+				                                <input type="text" class="form-control" placeholder="dataset name">
+		                                        </div>
+                                                </td>
                                                 <td id="BFS" class="text-right">
                                                     --
                                                 </td>
@@ -121,6 +130,12 @@
                                                 </td>
                                                 <td>
                                                     <button class="btn btn-primary" onclick="compileAndRun('KCore')">Compile & Run</button>
+                                                </td>
+                                                <td id="dataset_name">
+		                                         <div class="form-group">
+				                                
+				                                <input type="text" class="form-control" placeholder="dataset name">
+		                                        </div>
                                                 </td>
                                                 <td id="KCore" class="text-right">
                                                     --
@@ -138,21 +153,11 @@
                                                 <td>
                                                     <button class="btn btn-primary" onclick="compileAndRun(13)">Compile & Run</button>
                                                 </td>
-                                                <td class="text-right">
-                                                    --
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    --
-                                                </td>
-                                                <td>
-                                                <a href="http://binomial.me">
-	                                            view
-						</a>
-                                                </td>
-                                                <td>
-                                                    --
+                                                <td id="dataset_name">
+		                                         <div class="form-group">
+				                                
+				                                <input type="text" class="form-control" placeholder="dataset name">
+		                                        </div>
                                                 </td>
                                                 <td class="text-right">
                                                     --
@@ -170,21 +175,11 @@
                                                 <td>
                                                     --
                                                 </td>
-                                                <td class="text-right">
-                                                    --
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    --
-                                                </td>
-                                                <td>
-                                                <a href="http://binomial.me">
-	                                            view
-						</a>
-                                                </td>
-                                                <td>
-                                                    --
+                                                <td id="dataset_name">
+		                                         <div class="form-group">
+				                                
+				                                <input type="text" class="form-control" placeholder="dataset name">
+		                                        </div>
                                                 </td>
                                                 <td class="text-right">
                                                     --
@@ -201,6 +196,56 @@
                                                 </td>
                                                 <td>
                                                     --
+                                                </td>
+                                                <td id="dataset_name">
+		                                         <div class="form-group">
+				                                
+				                                <input type="text" class="form-control" placeholder="dataset name">
+		                                        </div>
+                                                </td>
+                                                <td class="text-right">
+                                                    --
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    --
+                                                </td>
+                                                <td>
+                                                <a href="http://binomial.me">
+	                                            view
+						</a>
+                                                </td>
+                                                <td>
+                                                    --
+                                                </td>
+                                                <td id="dataset_name">
+		                                         <div class="form-group">
+				                                
+				                                <input type="text" class="form-control" placeholder="dataset name">
+		                                        </div>
+                                                </td>
+                                                <td class="text-right">
+                                                    --
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    --
+                                                </td>
+                                                <td>
+                                                <a href="http://binomial.me">
+	                                            view
+						</a>
+                                                </td>
+                                                <td>
+                                                    --
+                                                </td>
+                                                <td id="dataset_name">
+		                                         <div class="form-group">
+				                                
+				                                <input type="text" class="form-control" placeholder="dataset name">
+		                                        </div>
                                                 </td>
                                                 <td class="text-right">
                                                     --
@@ -367,7 +412,8 @@
   var socket = io();
 
 	function compileAndRun(arg_val) {
-		socket.emit('compileandrun', arg_val);
+		var dataset_name = document.getElementById("dataset_name");
+		socket.emit('compileandrun', arg_val, dataset_name);
 	}
 
 	socket.on('timeoutput', function(time, id_name){
