@@ -103,7 +103,7 @@ function compileAndRun(program_code, dataset_name, socket)
     }
     else
     {
-        socket.emit('timeoutput', 'no such program written yet', program_code);
+        socket.emit('timeoutput', 'You haven\'t written program for', program_code);
         console.log('You don\'t yet have the program for ' + program_code);
 
     }

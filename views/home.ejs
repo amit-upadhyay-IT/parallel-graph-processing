@@ -87,10 +87,10 @@
                                                 Code
                                             </th>
                                             <th>
-                                                Compile and Run
+						Input (optional)
                                             </th>
                                             <th>
-                                                Input dataset
+                                                Compile and Run                                                
                                             </th>
                                             <th class="text-right">
                                                 Running Time
@@ -106,14 +106,15 @@
 	                                            view
 						</a>
                                                 </td>
-                                                <td>
-							<button class="btn btn-primary" onclick="compileAndRun('BFS', 'dataset_name_bfs')">Compile & Run</button>
-                                                </td>
+
                                                 <td>
 		                                         <div class="form-group">
 				                                
 				                                <input id="dataset_name_bfs" type="text" class="form-control" placeholder="dataset name">
 		                                        </div>
+                                                </td>
+                                                <td>
+							<button class="btn btn-primary" onclick="compileAndRun('BFS', 'dataset_name_bfs')">Compile & Run</button>
                                                 </td>
                                                 <td id="BFS" class="text-right">
                                                     --
@@ -128,14 +129,14 @@
 	                                            view
 						</a>
                                                 </td>
-                                                <td>
-                                                    <button class="btn btn-primary" onclick="compileAndRun('KCore', 'dataset_name_kcore')">Compile & Run</button>
-                                                </td>
                                                 <td id="dataset_name">
 		                                         <div class="form-group">
 				                                
 				                                <input id="dataset_name_kcore" type="text" class="form-control" placeholder="dataset name">
 		                                        </div>
+                                                </td>
+                                                <td>
+                                                    <button class="btn btn-primary" onclick="compileAndRun('KCore', 'dataset_name_kcore')">Compile & Run</button>
                                                 </td>
                                                 <td id="KCore" class="text-right">
                                                     --
@@ -150,16 +151,17 @@
 	                                            view
 						</a>
                                                 </td>
-                                                <td>
-                                                    <button class="btn btn-primary" onclick="compileAndRun('PageRank', 'dataset_name_pagerank')">Compile & Run</button>
-                                                </td>
+
                                                 <td>
 		                                         <div class="form-group">
 				                                
 				                                <input id="dataset_name_pagerank" type="text" class="form-control" placeholder="dataset name">
 		                                        </div>
                                                 </td>
-                                                <td class="text-right">
+                                                <td>
+                                                    <button class="btn btn-primary" onclick="compileAndRun('PageRank', 'dataset_name_pagerank')">Compile & Run</button>
+                                                </td>
+                                                <td id="PageRank" class="text-right">
                                                     --
                                                 </td>
                                             </tr>
@@ -172,36 +174,15 @@
 	                                            view
 						</a>
                                                 </td>
-                                                <td>
-                                                    --
-                                                </td>
+
                                                 <td>
 		                                         <div class="form-group">
 				                                
 				                                <input id="dataset_name" type="text" class="form-control" placeholder="dataset name">
 		                                        </div>
                                                 </td>
-                                                <td class="text-right">
-                                                    --
-                                                </td>
-                                            </tr>
-                                            <tr>
                                                 <td>
                                                     --
-                                                </td>
-                                                <td>
-                                                <a href="http://binomial.me">
-	                                            view
-						</a>
-                                                </td>
-                                                <td>
-                                                    --
-                                                </td>
-                                                <td>
-		                                         <div class="form-group">
-				                                
-				                                <input id="dataset_name" type="text" class="form-control" placeholder="dataset name">
-		                                        </div>
                                                 </td>
                                                 <td class="text-right">
                                                     --
@@ -216,14 +197,38 @@
 	                                            view
 						</a>
                                                 </td>
-                                                <td>
-                                                    --
-                                                </td>
+
                                                 <td>
 		                                         <div class="form-group">
 				                                
 				                                <input id="dataset_name" type="text" class="form-control" placeholder="dataset name">
 		                                        </div>
+                                                </td>
+                                                <td>
+                                                    --
+                                                </td>
+                                                <td class="text-right">
+                                                    --
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    --
+                                                </td>
+                                                <td>
+                                                <a href="http://binomial.me">
+	                                            view
+						</a>
+                                                </td>
+
+                                                <td>
+		                                         <div class="form-group">
+				                                
+				                                <input id="dataset_name" type="text" class="form-control" placeholder="dataset name">
+		                                        </div>
+                                                </td>
+                                                <td>
+                                                    --
                                                 </td>
                                                 <td class="text-right">
                                                     --
@@ -239,13 +244,13 @@
 						</a>
                                                 </td>
                                                 <td>
-                                                    --
-                                                </td>
-                                                <td>
 		                                         <div class="form-group">
 				                                
 				                                <input id="dataset_name" type="text" class="form-control" placeholder="dataset name">
 		                                        </div>
+                                                </td>
+                                                <td>
+                                                    --
                                                 </td>
                                                 <td class="text-right">
                                                     --
@@ -417,7 +422,12 @@
 	}
 
 	socket.on('timeoutput', function(time, id_name){
-		  document.getElementById(id_name).innerHTML = time+' ms';
+		  if (time[0] === 'Y')
+		  {
+		  	document.getElementById(id_name).innerHTML = time+' '+id_name;
+		  }
+		  else
+		  	document.getElementById(id_name).innerHTML = time+' ms';
 		});
 </script>
 
