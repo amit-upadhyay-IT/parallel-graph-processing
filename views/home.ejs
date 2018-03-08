@@ -107,12 +107,12 @@
 						</a>
                                                 </td>
                                                 <td>
-							<button class="btn btn-primary" onclick="compileAndRun('BFS')">Compile & Run</button>
+							<button class="btn btn-primary" onclick="compileAndRun('BFS', 'dataset_name_bfs')">Compile & Run</button>
                                                 </td>
-                                                <td id="dataset_name">
+                                                <td>
 		                                         <div class="form-group">
 				                                
-				                                <input type="text" class="form-control" placeholder="dataset name">
+				                                <input id="dataset_name_bfs" type="text" class="form-control" placeholder="dataset name">
 		                                        </div>
                                                 </td>
                                                 <td id="BFS" class="text-right">
@@ -129,12 +129,12 @@
 						</a>
                                                 </td>
                                                 <td>
-                                                    <button class="btn btn-primary" onclick="compileAndRun('KCore')">Compile & Run</button>
+                                                    <button class="btn btn-primary" onclick="compileAndRun('KCore', 'dataset_name_kcore')">Compile & Run</button>
                                                 </td>
                                                 <td id="dataset_name">
 		                                         <div class="form-group">
 				                                
-				                                <input type="text" class="form-control" placeholder="dataset name">
+				                                <input id="dataset_name_kcore" type="text" class="form-control" placeholder="dataset name">
 		                                        </div>
                                                 </td>
                                                 <td id="KCore" class="text-right">
@@ -151,12 +151,12 @@
 						</a>
                                                 </td>
                                                 <td>
-                                                    <button class="btn btn-primary" onclick="compileAndRun(13)">Compile & Run</button>
+                                                    <button class="btn btn-primary" onclick="compileAndRun('PageRank', 'dataset_name_pagerank')">Compile & Run</button>
                                                 </td>
-                                                <td id="dataset_name">
+                                                <td>
 		                                         <div class="form-group">
 				                                
-				                                <input type="text" class="form-control" placeholder="dataset name">
+				                                <input id="dataset_name_pagerank" type="text" class="form-control" placeholder="dataset name">
 		                                        </div>
                                                 </td>
                                                 <td class="text-right">
@@ -175,10 +175,10 @@
                                                 <td>
                                                     --
                                                 </td>
-                                                <td id="dataset_name">
+                                                <td>
 		                                         <div class="form-group">
 				                                
-				                                <input type="text" class="form-control" placeholder="dataset name">
+				                                <input id="dataset_name" type="text" class="form-control" placeholder="dataset name">
 		                                        </div>
                                                 </td>
                                                 <td class="text-right">
@@ -197,10 +197,10 @@
                                                 <td>
                                                     --
                                                 </td>
-                                                <td id="dataset_name">
+                                                <td>
 		                                         <div class="form-group">
 				                                
-				                                <input type="text" class="form-control" placeholder="dataset name">
+				                                <input id="dataset_name" type="text" class="form-control" placeholder="dataset name">
 		                                        </div>
                                                 </td>
                                                 <td class="text-right">
@@ -219,10 +219,10 @@
                                                 <td>
                                                     --
                                                 </td>
-                                                <td id="dataset_name">
+                                                <td>
 		                                         <div class="form-group">
 				                                
-				                                <input type="text" class="form-control" placeholder="dataset name">
+				                                <input id="dataset_name" type="text" class="form-control" placeholder="dataset name">
 		                                        </div>
                                                 </td>
                                                 <td class="text-right">
@@ -241,10 +241,10 @@
                                                 <td>
                                                     --
                                                 </td>
-                                                <td id="dataset_name">
+                                                <td>
 		                                         <div class="form-group">
 				                                
-				                                <input type="text" class="form-control" placeholder="dataset name">
+				                                <input id="dataset_name" type="text" class="form-control" placeholder="dataset name">
 		                                        </div>
                                                 </td>
                                                 <td class="text-right">
@@ -411,8 +411,8 @@
 <script>
   var socket = io();
 
-	function compileAndRun(arg_val) {
-		var dataset_name = document.getElementById("dataset_name");
+	function compileAndRun(arg_val, dataset_id) {
+		var dataset_name = document.getElementById(dataset_id).value;
 		socket.emit('compileandrun', arg_val, dataset_name);
 	}
 

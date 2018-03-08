@@ -28,8 +28,8 @@ var port = process.env.PORT || 3000;
 io.on('connection', function(socket){
   console.log('A new Connection Established!');
 
-    socket.on('compileandrun', function(msg){
-        compileAndRun(msg, socket)
+    socket.on('compileandrun', function(msg, dataset_name){
+        compileAndRun(msg, dataset_name, socket)
       });
 
     socket.on('disconnect', function(){
@@ -42,8 +42,14 @@ http.listen(port, function(){
 });
 
 // program_code is the program name, so I compile the program with that name itself
-function compileAndRun(program_code, socket)
+function compileAndRun(program_code, dataset_name, socket)
 {
+    console.log('dataset_name: ' + dataset_name);
+    // check if name of the dataset is passed or not, if not passed then set the default dataset
+    if (dataset_name === '')
+    {
+        dataset_name = 'rMatGraph_J_5_100';
+    }
     // check if the program is written for the passed program_code, then only do further steps
     if (program_code === 'BFS' || program_code === 'KCore')
     {
@@ -53,7 +59,7 @@ function compileAndRun(program_code, socket)
 
         compile_command = 'g++ '+'./frame_l/apps/'+program_code+'.C -o '+program_code;
         // compiled object code is gonna be in the current directory
-        run_command = './' + program_code + ' -s -start 1 ./frame_l/inputs/newfbdata';
+        run_command = './' + program_code + ' -s -start 1 ./frame_l/inputs/'+dataset_name;
 
         console.log(compile_command);
         console.log(run_command);
