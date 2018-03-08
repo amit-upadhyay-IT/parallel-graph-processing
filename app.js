@@ -88,7 +88,10 @@ function compileAndRun(program_code, dataset_name, socket)
                             }
                             else
                             {
-                                var time = data.substring(data.length-9, data.length);
+                                // find the last occurrence of : in the data string
+                                var last_occr = data.lastIndexOf(':');
+                                // now get the substring after the last occurred ':'
+                                var time = data.substring(last_occr+1, data.length);
                                 console.log('Running time: ' + time);
                                 // emit this time, don't broadcase because I don't want to display to everyone
                                 socket.emit('timeoutput', time, program_code);
