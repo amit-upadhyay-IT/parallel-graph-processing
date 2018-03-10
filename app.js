@@ -49,9 +49,12 @@ function compileAndRun(program_code, dataset_name, socket)
     if (dataset_name === '')
     {
         dataset_name = 'rMatGraph_J_5_100';
+        // setting the appropriate input data for BellmanFord and programs like that
+        if (program_code === 'BellmanFord')
+            dataset_name = 'rMatGraph_WJ_5_100';
     }
     // check if the program is written for the passed program_code, then only do further steps
-    if (program_code === 'BFS' || program_code === 'KCore')
+    if (program_code === 'BFS' || program_code === 'KCore' || program_code === 'BellmanFord')
     {
         // for building compile command and run command
         var compile_command = '';
